@@ -1,12 +1,12 @@
-import { Application, Loader, Sprite } from 'pixi.js'
+import { Application, Container, Loader, Sprite } from 'pixi.js'
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
+	width: 1280,//640,
+	height: 720//480
 });
 
 window.addEventListener("resize", ()=>{
@@ -35,16 +35,28 @@ window.addEventListener("resize", ()=>{
 window.dispatchEvent(new Event("resize"));
 
 Loader.shared.add({url: "./dino.png", name: "myDino"});
-Loader.shared.add({url: "./clampy.png", name: "myClampy"});
+Loader.shared.add({url: "./hat.png", name: "myHat"});
+
 
 Loader.shared.onComplete.add(()=>{
-const clampy: Sprite = Sprite.from("myDino");
-//clampy.anchor.set(0.5);
-console.log("Hola mundo!", clampy.width, clampy.height);
-clampy.x = 0;
-clampy.y = 0;
+const dino: Sprite = Sprite.from("myDino");
+const hat: Sprite = Sprite.from("myHat");
+//Escalo el gorro al 90% y seteo la posición de anclaje
+hat.scale.set(0.9);
+hat.position.set(110,-50);
 
-app.stage.addChild(clampy);
+//Creo el contenedor y agrego los sprites
+const dinoWhitHat: Container = new Container();
+
+dinoWhitHat.addChild(dino);
+dinoWhitHat.addChild(hat);
+ 
+dinoWhitHat.scale.set(0.7);
+dinoWhitHat.position.set(300,200);
+dinoWhitHat.angle = 15;
+//Pongo la imagen en la pantalla o escenario
+
+app.stage.addChild(dinoWhitHat);
 });
 
 Loader.shared.load();
