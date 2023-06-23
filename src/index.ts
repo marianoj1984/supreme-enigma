@@ -1,5 +1,7 @@
-import { Application, Container, Loader, Sprite } from 'pixi.js'
-
+import { Application, Loader } from 'pixi.js'
+import { assets } from './assets';
+//import { DinoHat } from './DinoHat';
+import { Scene } from './Scene';
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
@@ -30,33 +32,18 @@ window.addEventListener("resize", ()=>{
 
 	app.view.style.marginTop = margenVertical + "px";
 	app.view.style.marginBottom = margenVertical + "px";
+
+	
 })
 //Executo la arrow function resize para que el juego aparezca centrado 
 window.dispatchEvent(new Event("resize"));
 
-Loader.shared.add({url: "./dino.png", name: "myDino"});
-Loader.shared.add({url: "./hat.png", name: "myHat"});
+Loader.shared.add(assets);
 
 
 Loader.shared.onComplete.add(()=>{
-const dino: Sprite = Sprite.from("myDino");
-const hat: Sprite = Sprite.from("myHat");
-//Escalo el gorro al 90% y seteo la posición de anclaje
-hat.scale.set(0.9);
-hat.position.set(110,-50);
-
-//Creo el contenedor y agrego los sprites
-const dinoWhitHat: Container = new Container();
-
-dinoWhitHat.addChild(dino);
-dinoWhitHat.addChild(hat);
- 
-dinoWhitHat.scale.set(0.7);
-dinoWhitHat.position.set(300,200);
-dinoWhitHat.angle = 15;
-//Pongo la imagen en la pantalla o escenario
-
-app.stage.addChild(dinoWhitHat);
+const SceneDino: Scene = new Scene();
+app.stage.addChild(SceneDino);
 });
 
 Loader.shared.load();
