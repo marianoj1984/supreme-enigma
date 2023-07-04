@@ -1,12 +1,17 @@
-import { AnimatedSprite, Container, Graphics, Texture, Text } from "pixi.js";
-import { DinoHat } from "./DinoHat";
+//import { AnimatedSprite, Container, Graphics, Texture, Text } from "pixi.js";
+//import { DinoHat } from "./DinoHat";
+import { Container } from "pixi.js";
+import { LevelComplete } from "./LevelComplete";
 
 export class Scene extends Container{
 
     constructor(){
         //Llamo al constructor de "Container"
         super();
-        //Creo imagen estatica
+        const pantallaFondo: LevelComplete = new LevelComplete();
+        pantallaFondo.position.set(300,100)
+        this.addChild(pantallaFondo);
+        /*//Creo imagen estatica
         const dinoWhitHat: DinoHat = new DinoHat();
         dinoWhitHat.scale.set(0.7);
         dinoWhitHat.position.set(300,200);
@@ -65,7 +70,7 @@ export class Scene extends Container{
         myText.scale.set(1.5);
         this.addChild(myText);
 
-        //Nine-Slice-Plane
+        //Nine-Slice-Plane*/
         
 }
 }

@@ -6,7 +6,8 @@ const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
-	backgroundColor: 0x6495ed,
+	backgroundColor: 0x7ed9d2,
+	/*backgroundColor: 0x6495ed,*/
 	width: 1280,//640,
 	height: 720//480
 });
@@ -33,7 +34,7 @@ window.addEventListener("resize", ()=>{
 	app.view.style.marginTop = margenVertical + "px";
 	app.view.style.marginBottom = margenVertical + "px";
 
-	
+
 })
 //Executo la arrow function resize para que el juego aparezca centrado 
 window.dispatchEvent(new Event("resize"));
@@ -47,3 +48,5 @@ app.stage.addChild(SceneDino);
 });
 
 Loader.shared.load();
+
+
