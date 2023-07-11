@@ -1,7 +1,8 @@
 import { Application, Loader } from 'pixi.js'
 import { assets } from './assets';
 //import { DinoHat } from './DinoHat';
-import { Scene } from './Scene';
+import { Scene } from './scenes/Scene';
+import { Keyboard } from './utils/Keyboard';
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
@@ -12,6 +13,7 @@ const app = new Application({
 	height: 720//480
 });
 
+Keyboard.initialize();
 window.addEventListener("resize", ()=>{
 
 	//Calculo las escalas de ancho y alto
