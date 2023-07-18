@@ -1,16 +1,21 @@
-import { Application, Loader } from 'pixi.js'
+import { Application, Loader, Ticker } from 'pixi.js'
 import { assets } from './assets';
 //import { DinoHat } from './DinoHat';
-import { Scene } from './scenes/Scene';
+//import { Scene } from './scenes/Scene';
+//import {SceneUpdate } from './scenes/SceneUpdate';
 import { Keyboard } from './utils/Keyboard';
+import { SceneDvd } from './scenes/SceneDvd';
+
+export const WIDTH = 1920;
+export const HEIGHT =  1080;
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x7ed9d2,
 	/*backgroundColor: 0x6495ed,*/
-	width: 1280,//640,
-	height: 720//480
+	width: WIDTH,//640,
+	height: HEIGHT//480
 });
 
 Keyboard.initialize();
@@ -45,8 +50,21 @@ Loader.shared.add(assets);
 
 
 Loader.shared.onComplete.add(()=>{
-const SceneDino: Scene = new Scene();
-app.stage.addChild(SceneDino);
+/*Escena final de pantalla
+const SceneComplete: Scene = new Scene();
+app.stage.addChild(SceneComplete);*/
+
+/*Escena para loop de eventos
+const SceneDino: SceneUpdate = new SceneUpdate();
+app.stage.addChild(SceneDino);*/
+
+//Escena dvd Tarea
+const dvd = new SceneDvd();
+app.stage.addChild(dvd);
+Ticker.shared.add(function(deltaFrame){
+	dvd.update(Ticker.shared.deltaMS, deltaFrame)
+})
+
 });
 
 Loader.shared.load();

@@ -4,12 +4,14 @@ export class Keyboard{
 
     public static readonly state: Map<string, boolean> = new Map();
     private static initialized : boolean = false;
-    private constructor(){}
+    
     public static readonly down : utils.EventEmitter = new utils.EventEmitter();
     public static readonly up : utils.EventEmitter = new utils.EventEmitter();
     
+    private constructor(){}
+    
     public static initialize():void{
-        Keyboard.initialized = true;
+
         if(Keyboard.initialized){
             return;
         }
@@ -17,14 +19,14 @@ export class Keyboard{
         document.addEventListener("keydown", Keyboard.onKeyDown);
         document.addEventListener("keyup", Keyboard.onKeyUp);
     }
-    private static onKeyDown(e : KeyboardEvent){
+    public static onKeyDown(e : KeyboardEvent){
 
         if(Keyboard.state.get(e.code)!=true){
            Keyboard.down.emit(e.code); 
         }
         Keyboard.state.set(e.code, true);
     }
-    private static onKeyUp(e : KeyboardEvent){
+    public static onKeyUp(e : KeyboardEvent){
 
         Keyboard.up.emit(e.code);
         Keyboard.state.set(e.code, false);
