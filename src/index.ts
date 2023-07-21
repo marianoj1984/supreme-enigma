@@ -4,7 +4,9 @@ import { assets } from './assets';
 //import { Scene } from './scenes/Scene';
 //import {SceneUpdate } from './scenes/SceneUpdate';
 import { Keyboard } from './utils/Keyboard';
-import { SceneDvd } from './scenes/SceneDvd';
+//import { SceneDvd } from './scenes/SceneDvd';
+//import { Player } from './game/Player';
+import { TickerScene } from './scenes/TickerScene';
 
 export const WIDTH = 1920;
 export const HEIGHT =  1080;
@@ -58,11 +60,19 @@ app.stage.addChild(SceneComplete);*/
 const SceneDino: SceneUpdate = new SceneUpdate();
 app.stage.addChild(SceneDino);*/
 
-//Escena dvd Tarea
+/*Escena dvd Tarea
 const dvd = new SceneDvd();
 app.stage.addChild(dvd);
 Ticker.shared.add(function(deltaFrame){
 	dvd.update(Ticker.shared.deltaMS, deltaFrame)
+})
+
+});*/
+//Player
+const player = new TickerScene();
+app.stage.addChild(player);
+Ticker.shared.add(function(deltaFrame){
+	player.update(Ticker.shared.deltaMS, deltaFrame)
 })
 
 });

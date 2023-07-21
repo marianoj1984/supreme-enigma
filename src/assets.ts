@@ -20,7 +20,9 @@ export const assets = [
     {url: "./Icon_Small_CoinDollar.png", name: "Dinero"},
     {url: "./PremadeButtons_ExitOrange.png", name: "Exit"},
     {url: "./PremadeButtons_Options.png", name: "Opcion"},
-    {url: "./dvdLogo.png", name:"dvd"}
+    {url: "./dvdLogo.png", name:"dvd"},
+    {url: "./bg.jpg", name:"bg"},
+    {url: "./Platform.png", name:"Platform"}
 
 
 
